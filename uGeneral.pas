@@ -1,0 +1,326 @@
+unit uGeneral;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, System.ImageList, Vcl.ImgList, Vcl.Grids,
+  Vcl.ExtCtrls, Vcl.StdCtrls, Data.DB, Vcl.DBGrids;
+
+type
+  TFormPrincipal = class(TForm)
+    Dado1: TImageList;
+    Dado2: TImageList;
+    Dado3: TImageList;
+    Dado4: TImageList;
+    Dado5: TImageList;
+    Panel1: TPanel;
+    Button1: TButton;
+    Edit1: TEdit;
+    Image1: TImage;
+    Tabela: TStringGrid;
+    EditDado1: TEdit;
+    EditDado2: TEdit;
+    EditDado3: TEdit;
+    EditDado4: TEdit;
+    EditDado5: TEdit;
+    Button2: TButton;
+    Button3: TButton;
+    Button4: TButton;
+    Button5: TButton;
+    Button6: TButton;
+    Button7: TButton;
+    Button8: TButton;
+    Button9: TButton;
+    Button10: TButton;
+    Button11: TButton;
+    Button12: TButton;
+    Button13: TButton;
+    procedure FormCreate(Sender: TObject);
+    procedure inserirJogador(jogador: String);
+    procedure atualizarTotal();
+    function ifnull(valor: String): integer;
+    procedure Button1Click(Sender: TObject);
+    procedure Button2Click(Sender: TObject);
+    procedure Button3Click(Sender: TObject);
+    procedure Button4Click(Sender: TObject);
+    procedure Button5Click(Sender: TObject);
+    procedure Button6Click(Sender: TObject);
+    procedure Button7Click(Sender: TObject);
+    procedure Button8Click(Sender: TObject);
+    procedure Button12Click(Sender: TObject);
+    procedure Button13Click(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  FormPrincipal: TFormPrincipal;
+
+implementation
+
+{$R *.dfm}
+
+procedure TFormPrincipal.Button12Click(Sender: TObject);
+begin
+
+  if (EditDado1.Text = EditDado2.Text) and (EditDado1.Text = EditDado3.Text) and (EditDado1.Text = EditDado4.Text) and (EditDado1.Text = EditDado5.Text) then
+    Tabela.Cells[1, 10] := '50';
+
+  atualizarTotal();
+
+end;
+
+procedure TFormPrincipal.Button13Click(Sender: TObject);
+begin
+
+  if (EditDado1.Text = EditDado2.Text) and (EditDado1.Text = EditDado3.Text) and (EditDado1.Text = EditDado4.Text) and (EditDado1.Text = EditDado5.Text) then
+    Tabela.Cells[1, 11] := '50';
+
+  atualizarTotal();
+
+end;
+
+procedure TFormPrincipal.Button1Click(Sender: TObject);
+begin
+
+  inserirJogador(Edit1.Text);
+
+end;
+
+procedure TFormPrincipal.Button2Click(Sender: TObject);
+begin
+
+  EditDado1.Text := IntToStr(Random(6)+1);
+  EditDado2.Text := IntToStr(Random(6)+1);
+  EditDado3.Text := IntToStr(Random(6)+1);
+  EditDado4.Text := IntToStr(Random(6)+1);
+  EditDado5.Text := IntToStr(Random(6)+1);
+
+
+
+end;
+
+procedure TFormPrincipal.Button3Click(Sender: TObject);
+var
+  qtd: integer;
+begin
+
+  qtd := 0;
+
+  if EditDado1.Text = '1' then
+    qtd := qtd + 1;
+
+  if EditDado2.Text = '1' then
+    qtd := qtd + 1;
+
+  if EditDado3.Text = '1' then
+    qtd := qtd + 1;
+
+  if EditDado4.Text = '1' then
+    qtd := qtd + 1;
+
+  if EditDado5.Text = '1' then
+    qtd := qtd + 1;
+
+  Tabela.Cells[1, 1] := InttoStr(qtd);
+  atualizarTotal();
+
+end;
+
+procedure TFormPrincipal.Button4Click(Sender: TObject);
+var
+  qtd: integer;
+begin
+
+  qtd := 0;
+
+  if EditDado1.Text = '2' then
+    qtd := qtd + 2;
+
+  if EditDado2.Text = '2' then
+    qtd := qtd + 2;
+
+  if EditDado3.Text = '2' then
+    qtd := qtd + 2;
+
+  if EditDado4.Text = '2' then
+    qtd := qtd + 2;
+
+  if EditDado5.Text = '2' then
+    qtd := qtd + 2;
+
+  Tabela.Cells[1, 2] := InttoStr(qtd);
+  atualizarTotal();
+
+end;
+
+procedure TFormPrincipal.Button5Click(Sender: TObject);
+var
+  qtd: integer;
+begin
+
+  qtd := 0;
+
+  if EditDado1.Text = '3' then
+    qtd := qtd + 3;
+
+  if EditDado2.Text = '3' then
+    qtd := qtd + 3;
+
+  if EditDado3.Text = '3' then
+    qtd := qtd + 3;
+
+  if EditDado4.Text = '3' then
+    qtd := qtd + 3;
+
+  if EditDado5.Text = '3' then
+    qtd := qtd + 3;
+
+  Tabela.Cells[1, 3] := InttoStr(qtd);
+  atualizarTotal();
+
+end;
+
+procedure TFormPrincipal.Button6Click(Sender: TObject);
+var
+  qtd: integer;
+begin
+
+  qtd := 0;
+
+  if EditDado1.Text = '4' then
+    qtd := qtd + 4;
+
+  if EditDado2.Text = '4' then
+    qtd := qtd + 4;
+
+  if EditDado3.Text = '4' then
+    qtd := qtd + 4;
+
+  if EditDado4.Text = '4' then
+    qtd := qtd + 4;
+
+  if EditDado5.Text = '4' then
+    qtd := qtd + 4;
+
+  Tabela.Cells[1, 4] := InttoStr(qtd);
+  atualizarTotal();
+
+end;
+
+procedure TFormPrincipal.Button7Click(Sender: TObject);
+var
+  qtd: integer;
+begin
+
+  qtd := 0;
+
+  if EditDado1.Text = '5' then
+    qtd := qtd + 5;
+
+  if EditDado2.Text = '5' then
+    qtd := qtd + 5;
+
+  if EditDado3.Text = '5' then
+    qtd := qtd + 5;
+
+  if EditDado4.Text = '5' then
+    qtd := qtd + 5;
+
+  if EditDado5.Text = '5' then
+    qtd := qtd + 5;
+
+  Tabela.Cells[1, 5] := InttoStr(qtd);
+  atualizarTotal();
+
+end;
+
+procedure TFormPrincipal.Button8Click(Sender: TObject);
+var
+  qtd: integer;
+begin
+
+  qtd := 0;
+
+  if EditDado1.Text = '6' then
+    qtd := qtd + 6;
+
+  if EditDado2.Text = '6' then
+    qtd := qtd + 6;
+
+  if EditDado3.Text = '6' then
+    qtd := qtd + 6;
+
+  if EditDado4.Text = '6' then
+    qtd := qtd + 6;
+
+  if EditDado5.Text = '6' then
+    qtd := qtd + 6;
+
+  Tabela.Cells[1, 6] := InttoStr(qtd);
+  atualizarTotal();
+
+end;
+
+procedure TFormPrincipal.FormCreate(Sender: TObject);
+begin
+
+  Tabela.RowCount := 14;
+  Tabela.ColCount := 1;
+
+  Tabela.Cells[0, 1] := '1';
+  Tabela.Cells[0, 2] := '2';
+  Tabela.Cells[0, 3] := '3';
+  Tabela.Cells[0, 4] := '4';
+  Tabela.Cells[0, 5] := '5';
+  Tabela.Cells[0, 6] := '6';
+  Tabela.Cells[0, 7] := 'F';
+  Tabela.Cells[0, 8] := 'Q';
+  Tabela.Cells[0, 9] := 'S';
+  Tabela.Cells[0, 10] := 'G1';
+  Tabela.Cells[0, 11] := 'G2';
+  Tabela.Cells[0, 12] := '';
+  Tabela.Cells[0, 13] := 'Total';
+
+
+end;
+
+procedure TFormPrincipal.inserirJogador(jogador: String);
+begin
+
+  Tabela.ColCount := Tabela.ColCount + 1;
+  Tabela.Cells[Tabela.ColCount - 1, 0] := jogador;
+
+end;
+
+procedure TFormPrincipal.atualizarTotal();
+begin
+
+  Tabela.Cells[1, 13] := InttoStr(ifnull(Tabela.Cells[1, 1]) +
+                                  ifnull(Tabela.Cells[1, 2]) +
+                                  ifnull(Tabela.Cells[1, 3]) +
+                                  ifnull(Tabela.Cells[1, 4]) +
+                                  ifnull(Tabela.Cells[1, 5]) +
+                                  ifnull(Tabela.Cells[1, 6]) +
+                                  ifnull(Tabela.Cells[1, 7]) +
+                                  ifnull(Tabela.Cells[1, 8]) +
+                                  ifnull(Tabela.Cells[1, 9]) +
+                                  ifnull(Tabela.Cells[1, 10]) +
+                                  ifnull(Tabela.Cells[1, 11]));
+
+end;
+
+function TFormPrincipal.ifnull(valor: String): integer;
+begin
+
+  if valor = '' then
+    result := 0
+  else
+    result := StrtoInt(valor);
+
+end;
+
+end.
